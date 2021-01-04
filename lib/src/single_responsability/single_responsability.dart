@@ -12,6 +12,7 @@ class User {
 }
 
 class SignUp extends ChangeNotifier {
+  /// Create a new user with the user info
   Future<User> signUp({
     String name,
     String password,
@@ -31,6 +32,8 @@ class SignUp extends ChangeNotifier {
       //conver user to Json
       final userMap = newUser.toMap();
 
+      //Save object in DB
+      //This could be even an API call in the logic
       await saveToDB(jsonEncode(userMap));
     }
   }
@@ -38,4 +41,14 @@ class SignUp extends ChangeNotifier {
   Future<void> saveToDB(String userJson) async {
     await Future.delayed(const Duration(seconds: 2));
   }
+}
+
+class UserRepository {
+  Future<void> saveToDB(User user) async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
+}
+
+class ApiHelper {
+  static void post(String url, String body) {}
 }
