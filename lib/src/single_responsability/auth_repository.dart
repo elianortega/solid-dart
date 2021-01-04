@@ -9,7 +9,7 @@ class AuthRepository {
   var client = http.Client();
 
   ///Method that makes the API call to signup user
-  Future<User> signUp(User user) async {
+  Future<User> signUpUser(User user) async {
     try {
       ///API call
       var response = await client.post(

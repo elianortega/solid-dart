@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:solid_examples/src/single_responsability/auth_repository.dart';
 
 class User {
   const User({this.name, this.email, this.password});
@@ -12,30 +13,21 @@ class User {
 }
 
 class SignUp extends ChangeNotifier {
+  final AuthRepository _authRepository = AuthRepository();
+
   /// Create a new user with the user info
   Future<User> signUp({
     String name,
     String password,
     String email,
   }) async {
-    //Validate parameters are not empty
-    final isValid = name.isNotEmpty && password.isNotEmpty && email.isNotEmpty;
+    final newUser = User(
+      email: email,
+      password: password,
+      name: name,
+    );
 
-    if (isValid) {
-      //Create new user data
-      final newUser = User(
-        email: email,
-        password: password,
-        name: name,
-      );
-
-      //conver user to Json
-      final userMap = newUser.toMap();
-
-      //Save object in DB
-      //This could be even an API call in the logic
-      await saveToDB(jsonEncode(userMap));
-    }
+    await _authRepository.signUpUser(newUser);
   }
 
   Future<void> saveToDB(String userJson) async {
