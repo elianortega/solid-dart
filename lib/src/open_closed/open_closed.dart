@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PaymentStateNotifier extends ChangeNotifier {
+  /// Method that handles payment
   void pay(String paymentType) async {
     final _paymentRepository = PaymentRepository();
 
