@@ -4,7 +4,7 @@ abstract class DuckInterface {
   String quack();
 }
 
-class RubberDuck implements DuckInterface {
+class RubberDucks implements DuckInterface {
   @override
   void fly() {
     throw Exception("Rubber duck can't fly");
@@ -21,12 +21,19 @@ class RubberDuck implements DuckInterface {
   }
 }
 
-class BatteriesDuck implements DuckInterface {
-  @override
-  void fly() {
-    throw Exception("Rubber duck can't fly");
-  }
+abstract class QuackInterface {
+  String quack();
+}
 
+abstract class FlyInterface {
+  String fly();
+}
+
+abstract class SwimInterface {
+  String swim();
+}
+
+class RubberDuck implements QuackInterface, SwimInterface {
   @override
   String quack() {
     return "Quack!!!";
